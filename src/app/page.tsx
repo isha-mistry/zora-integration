@@ -1,103 +1,60 @@
+"use client";
+import { contractInstance } from "@/contracts/instance";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ethers } from "ethers";
 import Image from "next/image";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  const handleClick = async () => {
+    try {
+
+      const { ethereum } = window;
+      if (ethereum) {
+        const provider = new ethers.BrowserProvider(ethereum);
+        if (!provider) {
+          console.log("Metamask is not installed, please install!");
+        }
+        const con = await contractInstance();
+        console.log("Hello");
+        const contractConfig = {
+          additionalAdmins: [],
+          contractAdmin: "0xB351a70dD6E5282A8c84edCbCd5A955469b9b032",
+          contractName: "Testing meeting 4",
+          contractURI: "ipfs://bafkreifvk2zol6q5mvgysfwdcuvvm7aupaddqxxodrnvsuc3xh3kflk77m"
+        }
+
+        const premintConfig = {
+          deleted: false,
+          premintConfigVersion: "0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5",
+          tokenConfig: "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000001400000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003e8000000000000000000000000b351a70dd6e5282a8c84edcbcd5a955469b9b032000000000000000000000000227d5294b13ebc893e31494194532727a130ed4b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000042697066733a2f2f6261666b726569686a787574787136347672643679616e6b6f6467376e61353377736c71786834686c727865756b766f6275723770733365366465000000000000000000000000000000000000000000000000000000000000",
+          uid: 1,
+          version: 2
+        }
+        const signature = ""
+
+        const mintData = {
+          mintComment: "Comment",
+          mintRecipient: "0xB351a70dD6E5282A8c84edCbCd5A955469b9b032",
+          mintRewardsRecipients: [],
+        }
+
+        const tx = await con?.premint(contractConfig, "0x0000000000000000000000000000000000000000", premintConfig, signature, BigInt(1), mintData, "0xB351a70dD6E5282A8c84edCbCd5A955469b9b032", "0xB351a70dD6E5282A8c84edCbCd5A955469b9b032");
+
+        console.log(tx);
+        await tx.wait();
+      }
+    } catch (e) {
+      console.log("Error in creating user account: ", e);
+    }
+  };
+
+  return (
+    <>
+      <div><ConnectButton /></div>
+      <div className="h-screen flex flex-col justify-center items-center">
+        <button className="cursor-pointer border rounded-full px-3 py-2 bg-gray-700" onClick={handleClick}>Click Me</button>
+      </div>
+    </>
   );
 }

@@ -1,0 +1,961 @@
+[
+  {
+    "stateMutability": "nonpayable",
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "_factory",
+        "internalType": "contract IZoraCreator1155Factory",
+        "type": "address"
+      }
+    ]
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "inputs": [],
+    "name": "acceptOwnership",
+    "outputs": []
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "inputs": [],
+    "name": "cancelOwnershipTransfer",
+    "outputs": []
+  },
+  {
+    "stateMutability": "pure",
+    "type": "function",
+    "inputs": [],
+    "name": "contractName",
+    "outputs": [{ "name": "", "internalType": "string", "type": "string" }]
+  },
+  {
+    "stateMutability": "pure",
+    "type": "function",
+    "inputs": [],
+    "name": "contractVersion",
+    "outputs": [{ "name": "", "internalType": "string", "type": "string" }]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "contractConfig",
+        "internalType": "struct ContractCreationConfig",
+        "type": "tuple",
+        "components": [
+          { "name": "contractAdmin", "internalType": "address", "type": "address" },
+          { "name": "contractURI", "internalType": "string", "type": "string" },
+          { "name": "contractName", "internalType": "string", "type": "string" }
+        ]
+      }
+    ],
+    "name": "getContractAddress",
+    "outputs": [{ "name": "", "internalType": "address", "type": "address" }]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "contractConfig",
+        "internalType": "struct ContractWithAdditionalAdminsCreationConfig",
+        "type": "tuple",
+        "components": [
+          { "name": "contractAdmin", "internalType": "address", "type": "address" },
+          { "name": "contractURI", "internalType": "string", "type": "string" },
+          { "name": "contractName", "internalType": "string", "type": "string" },
+          {
+            "name": "additionalAdmins",
+            "internalType": "address[]",
+            "type": "address[]"
+          }
+        ]
+      }
+    ],
+    "name": "getContractWithAdditionalAdminsAddress",
+    "outputs": [{ "name": "", "internalType": "address", "type": "address" }]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [],
+    "name": "implementation",
+    "outputs": [{ "name": "", "internalType": "address", "type": "address" }]
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "inputs": [
+      { "name": "_initialOwner", "internalType": "address", "type": "address" }
+    ],
+    "name": "initialize",
+    "outputs": []
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [
+      { "name": "signer", "internalType": "address", "type": "address" },
+      {
+        "name": "premintContractConfigContractAdmin",
+        "internalType": "address",
+        "type": "address"
+      },
+      { "name": "contractAddress", "internalType": "address", "type": "address" }
+    ],
+    "name": "isAuthorizedToCreatePremint",
+    "outputs": [{ "name": "isAuthorized", "internalType": "bool", "type": "bool" }]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [
+      { "name": "signer", "internalType": "address", "type": "address" },
+      {
+        "name": "premintContractConfigContractAdmin",
+        "internalType": "address",
+        "type": "address"
+      },
+      { "name": "contractAddress", "internalType": "address", "type": "address" },
+      {
+        "name": "additionalAdmins",
+        "internalType": "address[]",
+        "type": "address[]"
+      }
+    ],
+    "name": "isAuthorizedToCreatePremintWithAdditionalAdmins",
+    "outputs": [{ "name": "isAuthorized", "internalType": "bool", "type": "bool" }]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "contractConfig",
+        "internalType": "struct ContractCreationConfig",
+        "type": "tuple",
+        "components": [
+          { "name": "contractAdmin", "internalType": "address", "type": "address" },
+          { "name": "contractURI", "internalType": "string", "type": "string" },
+          { "name": "contractName", "internalType": "string", "type": "string" }
+        ]
+      },
+      {
+        "name": "premintConfig",
+        "internalType": "struct PremintConfig",
+        "type": "tuple",
+        "components": [
+          {
+            "name": "tokenConfig",
+            "internalType": "struct TokenCreationConfig",
+            "type": "tuple",
+            "components": [
+              { "name": "tokenURI", "internalType": "string", "type": "string" },
+              { "name": "maxSupply", "internalType": "uint256", "type": "uint256" },
+              {
+                "name": "maxTokensPerAddress",
+                "internalType": "uint64",
+                "type": "uint64"
+              },
+              { "name": "pricePerToken", "internalType": "uint96", "type": "uint96" },
+              { "name": "mintStart", "internalType": "uint64", "type": "uint64" },
+              { "name": "mintDuration", "internalType": "uint64", "type": "uint64" },
+              {
+                "name": "royaltyMintSchedule",
+                "internalType": "uint32",
+                "type": "uint32"
+              },
+              { "name": "royaltyBPS", "internalType": "uint32", "type": "uint32" },
+              {
+                "name": "royaltyRecipient",
+                "internalType": "address",
+                "type": "address"
+              },
+              {
+                "name": "fixedPriceMinter",
+                "internalType": "address",
+                "type": "address"
+              }
+            ]
+          },
+          { "name": "uid", "internalType": "uint32", "type": "uint32" },
+          { "name": "version", "internalType": "uint32", "type": "uint32" },
+          { "name": "deleted", "internalType": "bool", "type": "bool" }
+        ]
+      },
+      { "name": "signature", "internalType": "bytes", "type": "bytes" }
+    ],
+    "name": "isValidSignature",
+    "outputs": [
+      { "name": "isValid", "internalType": "bool", "type": "bool" },
+      { "name": "contractAddress", "internalType": "address", "type": "address" },
+      { "name": "recoveredSigner", "internalType": "address", "type": "address" }
+    ]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [
+      { "name": "collectionAddress", "internalType": "address", "type": "address" }
+    ],
+    "name": "mintFee",
+    "outputs": [{ "name": "", "internalType": "uint256", "type": "uint256" }]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "name": "", "internalType": "address", "type": "address" }]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [],
+    "name": "pendingOwner",
+    "outputs": [{ "name": "", "internalType": "address", "type": "address" }]
+  },
+  {
+    "stateMutability": "payable",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "contractConfig",
+        "internalType": "struct ContractWithAdditionalAdminsCreationConfig",
+        "type": "tuple",
+        "components": [
+          { "name": "contractAdmin", "internalType": "address", "type": "address" },
+          { "name": "contractURI", "internalType": "string", "type": "string" },
+          { "name": "contractName", "internalType": "string", "type": "string" },
+          {
+            "name": "additionalAdmins",
+            "internalType": "address[]",
+            "type": "address[]"
+          }
+        ]
+      },
+      { "name": "premintCollection", "internalType": "address", "type": "address" },
+      {
+        "name": "encodedPremintConfig",
+        "internalType": "struct PremintConfigEncoded",
+        "type": "tuple",
+        "components": [
+          { "name": "uid", "internalType": "uint32", "type": "uint32" },
+          { "name": "version", "internalType": "uint32", "type": "uint32" },
+          { "name": "deleted", "internalType": "bool", "type": "bool" },
+          { "name": "tokenConfig", "internalType": "bytes", "type": "bytes" },
+          {
+            "name": "premintConfigVersion",
+            "internalType": "bytes32",
+            "type": "bytes32"
+          }
+        ]
+      },
+      { "name": "signature", "internalType": "bytes", "type": "bytes" },
+      { "name": "quantityToMint", "internalType": "uint256", "type": "uint256" },
+      {
+        "name": "mintArguments",
+        "internalType": "struct MintArguments",
+        "type": "tuple",
+        "components": [
+          { "name": "mintRecipient", "internalType": "address", "type": "address" },
+          { "name": "mintComment", "internalType": "string", "type": "string" },
+          {
+            "name": "mintRewardsRecipients",
+            "internalType": "address[]",
+            "type": "address[]"
+          }
+        ]
+      },
+      { "name": "firstMinter", "internalType": "address", "type": "address" },
+      { "name": "signerContract", "internalType": "address", "type": "address" }
+    ],
+    "name": "premint",
+    "outputs": [
+      {
+        "name": "premintResult",
+        "internalType": "struct PremintResult",
+        "type": "tuple",
+        "components": [
+          { "name": "contractAddress", "internalType": "address", "type": "address" },
+          { "name": "tokenId", "internalType": "uint256", "type": "uint256" },
+          { "name": "createdNewContract", "internalType": "bool", "type": "bool" }
+        ]
+      }
+    ]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [
+      { "name": "contractAddress", "internalType": "address", "type": "address" },
+      { "name": "uid", "internalType": "uint32", "type": "uint32" }
+    ],
+    "name": "premintStatus",
+    "outputs": [
+      { "name": "contractCreated", "internalType": "bool", "type": "bool" },
+      { "name": "tokenIdForPremint", "internalType": "uint256", "type": "uint256" }
+    ]
+  },
+  {
+    "stateMutability": "payable",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "contractConfig",
+        "internalType": "struct ContractCreationConfig",
+        "type": "tuple",
+        "components": [
+          { "name": "contractAdmin", "internalType": "address", "type": "address" },
+          { "name": "contractURI", "internalType": "string", "type": "string" },
+          { "name": "contractName", "internalType": "string", "type": "string" }
+        ]
+      },
+      {
+        "name": "premintConfig",
+        "internalType": "struct PremintConfig",
+        "type": "tuple",
+        "components": [
+          {
+            "name": "tokenConfig",
+            "internalType": "struct TokenCreationConfig",
+            "type": "tuple",
+            "components": [
+              { "name": "tokenURI", "internalType": "string", "type": "string" },
+              { "name": "maxSupply", "internalType": "uint256", "type": "uint256" },
+              {
+                "name": "maxTokensPerAddress",
+                "internalType": "uint64",
+                "type": "uint64"
+              },
+              { "name": "pricePerToken", "internalType": "uint96", "type": "uint96" },
+              { "name": "mintStart", "internalType": "uint64", "type": "uint64" },
+              { "name": "mintDuration", "internalType": "uint64", "type": "uint64" },
+              {
+                "name": "royaltyMintSchedule",
+                "internalType": "uint32",
+                "type": "uint32"
+              },
+              { "name": "royaltyBPS", "internalType": "uint32", "type": "uint32" },
+              {
+                "name": "royaltyRecipient",
+                "internalType": "address",
+                "type": "address"
+              },
+              {
+                "name": "fixedPriceMinter",
+                "internalType": "address",
+                "type": "address"
+              }
+            ]
+          },
+          { "name": "uid", "internalType": "uint32", "type": "uint32" },
+          { "name": "version", "internalType": "uint32", "type": "uint32" },
+          { "name": "deleted", "internalType": "bool", "type": "bool" }
+        ]
+      },
+      { "name": "signature", "internalType": "bytes", "type": "bytes" },
+      { "name": "quantityToMint", "internalType": "uint256", "type": "uint256" },
+      {
+        "name": "mintArguments",
+        "internalType": "struct MintArguments",
+        "type": "tuple",
+        "components": [
+          { "name": "mintRecipient", "internalType": "address", "type": "address" },
+          { "name": "mintComment", "internalType": "string", "type": "string" },
+          {
+            "name": "mintRewardsRecipients",
+            "internalType": "address[]",
+            "type": "address[]"
+          }
+        ]
+      }
+    ],
+    "name": "premintV1",
+    "outputs": [
+      {
+        "name": "",
+        "internalType": "struct PremintResult",
+        "type": "tuple",
+        "components": [
+          { "name": "contractAddress", "internalType": "address", "type": "address" },
+          { "name": "tokenId", "internalType": "uint256", "type": "uint256" },
+          { "name": "createdNewContract", "internalType": "bool", "type": "bool" }
+        ]
+      }
+    ]
+  },
+  {
+    "stateMutability": "payable",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "contractConfig",
+        "internalType": "struct ContractCreationConfig",
+        "type": "tuple",
+        "components": [
+          { "name": "contractAdmin", "internalType": "address", "type": "address" },
+          { "name": "contractURI", "internalType": "string", "type": "string" },
+          { "name": "contractName", "internalType": "string", "type": "string" }
+        ]
+      },
+      {
+        "name": "premintConfig",
+        "internalType": "struct PremintConfigV2",
+        "type": "tuple",
+        "components": [
+          {
+            "name": "tokenConfig",
+            "internalType": "struct TokenCreationConfigV2",
+            "type": "tuple",
+            "components": [
+              { "name": "tokenURI", "internalType": "string", "type": "string" },
+              { "name": "maxSupply", "internalType": "uint256", "type": "uint256" },
+              {
+                "name": "maxTokensPerAddress",
+                "internalType": "uint64",
+                "type": "uint64"
+              },
+              { "name": "pricePerToken", "internalType": "uint96", "type": "uint96" },
+              { "name": "mintStart", "internalType": "uint64", "type": "uint64" },
+              { "name": "mintDuration", "internalType": "uint64", "type": "uint64" },
+              { "name": "royaltyBPS", "internalType": "uint32", "type": "uint32" },
+              {
+                "name": "payoutRecipient",
+                "internalType": "address",
+                "type": "address"
+              },
+              {
+                "name": "fixedPriceMinter",
+                "internalType": "address",
+                "type": "address"
+              },
+              {
+                "name": "createReferral",
+                "internalType": "address",
+                "type": "address"
+              }
+            ]
+          },
+          { "name": "uid", "internalType": "uint32", "type": "uint32" },
+          { "name": "version", "internalType": "uint32", "type": "uint32" },
+          { "name": "deleted", "internalType": "bool", "type": "bool" }
+        ]
+      },
+      { "name": "signature", "internalType": "bytes", "type": "bytes" },
+      { "name": "quantityToMint", "internalType": "uint256", "type": "uint256" },
+      {
+        "name": "mintArguments",
+        "internalType": "struct MintArguments",
+        "type": "tuple",
+        "components": [
+          { "name": "mintRecipient", "internalType": "address", "type": "address" },
+          { "name": "mintComment", "internalType": "string", "type": "string" },
+          {
+            "name": "mintRewardsRecipients",
+            "internalType": "address[]",
+            "type": "address[]"
+          }
+        ]
+      }
+    ],
+    "name": "premintV2",
+    "outputs": [
+      {
+        "name": "",
+        "internalType": "struct PremintResult",
+        "type": "tuple",
+        "components": [
+          { "name": "contractAddress", "internalType": "address", "type": "address" },
+          { "name": "tokenId", "internalType": "uint256", "type": "uint256" },
+          { "name": "createdNewContract", "internalType": "bool", "type": "bool" }
+        ]
+      }
+    ]
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [],
+    "name": "proxiableUUID",
+    "outputs": [{ "name": "", "internalType": "bytes32", "type": "bytes32" }]
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "inputs": [],
+    "name": "resignOwnership",
+    "outputs": []
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "inputs": [{ "name": "_newOwner", "internalType": "address", "type": "address" }],
+    "name": "safeTransferOwnership",
+    "outputs": []
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [
+      { "name": "contractAddress", "internalType": "address", "type": "address" }
+    ],
+    "name": "supportedPremintSignatureVersions",
+    "outputs": [{ "name": "versions", "internalType": "string[]", "type": "string[]" }]
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "inputs": [{ "name": "_newOwner", "internalType": "address", "type": "address" }],
+    "name": "transferOwnership",
+    "outputs": []
+  },
+  {
+    "stateMutability": "nonpayable",
+    "type": "function",
+    "inputs": [
+      { "name": "newImplementation", "internalType": "address", "type": "address" }
+    ],
+    "name": "upgradeTo",
+    "outputs": []
+  },
+  {
+    "stateMutability": "payable",
+    "type": "function",
+    "inputs": [
+      { "name": "newImplementation", "internalType": "address", "type": "address" },
+      { "name": "data", "internalType": "bytes", "type": "bytes" }
+    ],
+    "name": "upgradeToAndCall",
+    "outputs": []
+  },
+  {
+    "stateMutability": "view",
+    "type": "function",
+    "inputs": [],
+    "name": "zora1155Factory",
+    "outputs": [
+      {
+        "name": "",
+        "internalType": "contract IZoraCreator1155Factory",
+        "type": "address"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "name": "previousAdmin",
+        "internalType": "address",
+        "type": "address",
+        "indexed": false
+      },
+      {
+        "name": "newAdmin",
+        "internalType": "address",
+        "type": "address",
+        "indexed": false
+      }
+    ],
+    "name": "AdminChanged"
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "name": "beacon",
+        "internalType": "address",
+        "type": "address",
+        "indexed": true
+      }
+    ],
+    "name": "BeaconUpgraded"
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      { "name": "version", "internalType": "uint8", "type": "uint8", "indexed": false }
+    ],
+    "name": "Initialized"
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "name": "owner",
+        "internalType": "address",
+        "type": "address",
+        "indexed": true
+      },
+      {
+        "name": "canceledOwner",
+        "internalType": "address",
+        "type": "address",
+        "indexed": true
+      }
+    ],
+    "name": "OwnerCanceled"
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "name": "owner",
+        "internalType": "address",
+        "type": "address",
+        "indexed": true
+      },
+      {
+        "name": "pendingOwner",
+        "internalType": "address",
+        "type": "address",
+        "indexed": true
+      }
+    ],
+    "name": "OwnerPending"
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "name": "prevOwner",
+        "internalType": "address",
+        "type": "address",
+        "indexed": true
+      },
+      {
+        "name": "newOwner",
+        "internalType": "address",
+        "type": "address",
+        "indexed": true
+      }
+    ],
+    "name": "OwnerUpdated"
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "name": "contractAddress",
+        "internalType": "address",
+        "type": "address",
+        "indexed": true
+      },
+      {
+        "name": "tokenId",
+        "internalType": "uint256",
+        "type": "uint256",
+        "indexed": true
+      },
+      {
+        "name": "createdNewContract",
+        "internalType": "bool",
+        "type": "bool",
+        "indexed": true
+      },
+      { "name": "uid", "internalType": "uint32", "type": "uint32", "indexed": false },
+      {
+        "name": "contractConfig",
+        "internalType": "struct ContractCreationConfig",
+        "type": "tuple",
+        "components": [
+          { "name": "contractAdmin", "internalType": "address", "type": "address" },
+          { "name": "contractURI", "internalType": "string", "type": "string" },
+          { "name": "contractName", "internalType": "string", "type": "string" }
+        ],
+        "indexed": false
+      },
+      {
+        "name": "tokenConfig",
+        "internalType": "struct TokenCreationConfig",
+        "type": "tuple",
+        "components": [
+          { "name": "tokenURI", "internalType": "string", "type": "string" },
+          { "name": "maxSupply", "internalType": "uint256", "type": "uint256" },
+          {
+            "name": "maxTokensPerAddress",
+            "internalType": "uint64",
+            "type": "uint64"
+          },
+          { "name": "pricePerToken", "internalType": "uint96", "type": "uint96" },
+          { "name": "mintStart", "internalType": "uint64", "type": "uint64" },
+          { "name": "mintDuration", "internalType": "uint64", "type": "uint64" },
+          {
+            "name": "royaltyMintSchedule",
+            "internalType": "uint32",
+            "type": "uint32"
+          },
+          { "name": "royaltyBPS", "internalType": "uint32", "type": "uint32" },
+          {
+            "name": "royaltyRecipient",
+            "internalType": "address",
+            "type": "address"
+          },
+          {
+            "name": "fixedPriceMinter",
+            "internalType": "address",
+            "type": "address"
+          }
+        ],
+        "indexed": false
+      },
+      {
+        "name": "minter",
+        "internalType": "address",
+        "type": "address",
+        "indexed": false
+      },
+      {
+        "name": "quantityMinted",
+        "internalType": "uint256",
+        "type": "uint256",
+        "indexed": false
+      }
+    ],
+    "name": "Preminted"
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "name": "contractAddress",
+        "internalType": "address",
+        "type": "address",
+        "indexed": true
+      },
+      {
+        "name": "tokenId",
+        "internalType": "uint256",
+        "type": "uint256",
+        "indexed": true
+      },
+      {
+        "name": "createdNewContract",
+        "internalType": "bool",
+        "type": "bool",
+        "indexed": true
+      },
+      { "name": "uid", "internalType": "uint32", "type": "uint32", "indexed": false },
+      {
+        "name": "minter",
+        "internalType": "address",
+        "type": "address",
+        "indexed": false
+      },
+      {
+        "name": "quantityMinted",
+        "internalType": "uint256",
+        "type": "uint256",
+        "indexed": false
+      }
+    ],
+    "name": "PremintedV2"
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "inputs": [
+      {
+        "name": "implementation",
+        "internalType": "address",
+        "type": "address",
+        "indexed": true
+      }
+    ],
+    "name": "Upgraded"
+  },
+  { "type": "error", "inputs": [], "name": "ADDRESS_DELEGATECALL_TO_NON_CONTRACT" },
+  { "type": "error", "inputs": [], "name": "ADDRESS_LOW_LEVEL_CALL_FAILED" },
+  {
+    "type": "error",
+    "inputs": [
+      { "name": "operator", "internalType": "address", "type": "address" },
+      { "name": "user", "internalType": "address", "type": "address" }
+    ],
+    "name": "Burn_NotOwnerOrApproved"
+  },
+  { "type": "error", "inputs": [], "name": "CREATOR_FUNDS_RECIPIENT_NOT_SET" },
+  {
+    "type": "error",
+    "inputs": [{ "name": "reason", "internalType": "bytes", "type": "bytes" }],
+    "name": "CallFailed"
+  },
+  { "type": "error", "inputs": [], "name": "Call_TokenIdMismatch" },
+  { "type": "error", "inputs": [], "name": "CallerNotZoraCreator1155" },
+  { "type": "error", "inputs": [], "name": "CanOnlyReduceMaxSupply" },
+  {
+    "type": "error",
+    "inputs": [
+      { "name": "tokenId", "internalType": "uint256", "type": "uint256" },
+      { "name": "quantity", "internalType": "uint256", "type": "uint256" },
+      { "name": "totalMinted", "internalType": "uint256", "type": "uint256" },
+      { "name": "maxSupply", "internalType": "uint256", "type": "uint256" }
+    ],
+    "name": "CannotMintMoreTokens"
+  },
+  { "type": "error", "inputs": [], "name": "CannotReduceMaxSupplyBelowMinted" },
+  {
+    "type": "error",
+    "inputs": [
+      { "name": "proposedAddress", "internalType": "address", "type": "address" }
+    ],
+    "name": "Config_TransferHookNotSupported"
+  },
+  { "type": "error", "inputs": [], "name": "ERC1155_MINT_TO_ZERO_ADDRESS" },
+  { "type": "error", "inputs": [], "name": "ERC1967_NEW_IMPL_NOT_CONTRACT" },
+  { "type": "error", "inputs": [], "name": "ERC1967_NEW_IMPL_NOT_UUPS" },
+  { "type": "error", "inputs": [], "name": "ERC1967_UNSUPPORTED_PROXIABLEUUID" },
+  { "type": "error", "inputs": [], "name": "ERC20TransferSlippage" },
+  {
+    "type": "error",
+    "inputs": [
+      { "name": "recipient", "internalType": "address", "type": "address" },
+      { "name": "amount", "internalType": "uint256", "type": "uint256" }
+    ],
+    "name": "ETHWithdrawFailed"
+  },
+  {
+    "type": "error",
+    "inputs": [],
+    "name": "FUNCTION_MUST_BE_CALLED_THROUGH_ACTIVE_PROXY"
+  },
+  {
+    "type": "error",
+    "inputs": [],
+    "name": "FUNCTION_MUST_BE_CALLED_THROUGH_DELEGATECALL"
+  },
+  { "type": "error", "inputs": [], "name": "FirstMinterAddressZero" },
+  {
+    "type": "error",
+    "inputs": [
+      { "name": "amount", "internalType": "uint256", "type": "uint256" },
+      { "name": "contractValue", "internalType": "uint256", "type": "uint256" }
+    ],
+    "name": "FundsWithdrawInsolvent"
+  },
+  {
+    "type": "error",
+    "inputs": [],
+    "name": "INITIALIZABLE_CONTRACT_ALREADY_INITIALIZED"
+  },
+  { "type": "error", "inputs": [], "name": "INITIALIZABLE_CONTRACT_IS_INITIALIZING" },
+  {
+    "type": "error",
+    "inputs": [],
+    "name": "INITIALIZABLE_CONTRACT_IS_NOT_INITIALIZING"
+  },
+  { "type": "error", "inputs": [], "name": "INVALID_ADDRESS_ZERO" },
+  { "type": "error", "inputs": [], "name": "INVALID_ETH_AMOUNT" },
+  {
+    "type": "error",
+    "inputs": [
+      { "name": "mintTo", "internalType": "address", "type": "address" },
+      { "name": "merkleProof", "internalType": "bytes32[]", "type": "bytes32[]" },
+      { "name": "merkleRoot", "internalType": "bytes32", "type": "bytes32" }
+    ],
+    "name": "InvalidMerkleProof"
+  },
+  { "type": "error", "inputs": [], "name": "InvalidMintSchedule" },
+  { "type": "error", "inputs": [], "name": "InvalidPremintVersion" },
+  { "type": "error", "inputs": [], "name": "InvalidSignature" },
+  { "type": "error", "inputs": [], "name": "InvalidSignatureVersion" },
+  {
+    "type": "error",
+    "inputs": [{ "name": "magicValue", "internalType": "bytes4", "type": "bytes4" }],
+    "name": "InvalidSigner"
+  },
+  { "type": "error", "inputs": [], "name": "MintNotYetStarted" },
+  { "type": "error", "inputs": [], "name": "Mint_InsolventSaleTransfer" },
+  { "type": "error", "inputs": [], "name": "Mint_InvalidMintArrayLength" },
+  { "type": "error", "inputs": [], "name": "Mint_TokenIDMintNotAllowed" },
+  { "type": "error", "inputs": [], "name": "Mint_UnknownCommand" },
+  { "type": "error", "inputs": [], "name": "Mint_ValueTransferFail" },
+  { "type": "error", "inputs": [], "name": "MinterContractAlreadyExists" },
+  { "type": "error", "inputs": [], "name": "MinterContractDoesNotExist" },
+  { "type": "error", "inputs": [], "name": "NewOwnerNeedsToBeAdmin" },
+  { "type": "error", "inputs": [], "name": "NonEthRedemption" },
+  { "type": "error", "inputs": [], "name": "ONLY_CREATE_REFERRAL" },
+  { "type": "error", "inputs": [], "name": "ONLY_OWNER" },
+  { "type": "error", "inputs": [], "name": "ONLY_PENDING_OWNER" },
+  { "type": "error", "inputs": [], "name": "OWNER_CANNOT_BE_ZERO_ADDRESS" },
+  { "type": "error", "inputs": [], "name": "OnlyTransfersFromZoraMints" },
+  { "type": "error", "inputs": [], "name": "PremintDeleted" },
+  {
+    "type": "error",
+    "inputs": [
+      { "name": "caller", "internalType": "address", "type": "address" },
+      { "name": "recipient", "internalType": "address", "type": "address" },
+      { "name": "amount", "internalType": "uint256", "type": "uint256" }
+    ],
+    "name": "ProtocolRewardsWithdrawFailed"
+  },
+  { "type": "error", "inputs": [], "name": "Renderer_NotValidRendererContract" },
+  { "type": "error", "inputs": [], "name": "SaleEnded" },
+  { "type": "error", "inputs": [], "name": "SaleHasNotStarted" },
+  {
+    "type": "error",
+    "inputs": [
+      { "name": "targetContract", "internalType": "address", "type": "address" }
+    ],
+    "name": "Sale_CannotCallNonSalesContract"
+  },
+  {
+    "type": "error",
+    "inputs": [
+      { "name": "expected", "internalType": "uint256", "type": "uint256" },
+      { "name": "actual", "internalType": "uint256", "type": "uint256" }
+    ],
+    "name": "TokenIdMismatch"
+  },
+  {
+    "type": "error",
+    "inputs": [],
+    "name": "UUPS_UPGRADEABLE_MUST_NOT_BE_CALLED_THROUGH_DELEGATECALL"
+  },
+  {
+    "type": "error",
+    "inputs": [
+      { "name": "expected", "internalType": "string", "type": "string" },
+      { "name": "actual", "internalType": "string", "type": "string" }
+    ],
+    "name": "UpgradeToMismatchedContractName"
+  },
+  {
+    "type": "error",
+    "inputs": [
+      { "name": "user", "internalType": "address", "type": "address" },
+      { "name": "limit", "internalType": "uint256", "type": "uint256" },
+      { "name": "requestedAmount", "internalType": "uint256", "type": "uint256" }
+    ],
+    "name": "UserExceedsMintLimit"
+  },
+  {
+    "type": "error",
+    "inputs": [
+      { "name": "user", "internalType": "address", "type": "address" },
+      { "name": "tokenId", "internalType": "uint256", "type": "uint256" },
+      { "name": "role", "internalType": "uint256", "type": "uint256" }
+    ],
+    "name": "UserMissingRoleForToken"
+  },
+  { "type": "error", "inputs": [], "name": "WrongValueSent" },
+  {
+    "type": "error",
+    "inputs": [],
+    "name": "premintSignerContractFailedToRecoverSigner"
+  },
+  { "type": "error", "inputs": [], "name": "premintSignerContractNotAContract" }
+]
