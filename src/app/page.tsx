@@ -1,51 +1,64 @@
 "use client";
+import { generatePremintParams } from "@/components/premintUtils";
 import { contractInstance } from "@/contracts/instance";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ethers } from "ethers";
-import Image from "next/image";
 
 export default function Home() {
 
   const handleClick = async () => {
     try {
-
       const { ethereum } = window;
-      if (ethereum) {
-        const provider = new ethers.BrowserProvider(ethereum);
-        if (!provider) {
-          console.log("Metamask is not installed, please install!");
-        }
-        const con = await contractInstance();
-        console.log("Hello");
-        const contractConfig = {
-          additionalAdmins: [],
-          contractAdmin: "0xB351a70dD6E5282A8c84edCbCd5A955469b9b032",
-          contractName: "Testing meeting 4",
-          contractURI: "ipfs://bafkreifvk2zol6q5mvgysfwdcuvvm7aupaddqxxodrnvsuc3xh3kflk77m"
-        }
+      if (!ethereum) {
+        console.log("Metamask is not installed, please install!");
+        return;
+      }
 
-        const premintConfig = {
-          deleted: false,
-          premintConfigVersion: "0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5",
-          tokenConfig: "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000001400000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003e8000000000000000000000000b351a70dd6e5282a8c84edcbcd5a955469b9b032000000000000000000000000227d5294b13ebc893e31494194532727a130ed4b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000042697066733a2f2f6261666b726569686a787574787136347672643679616e6b6f6467376e61353377736c71786834686c727865756b766f6275723770733365366465000000000000000000000000000000000000000000000000000000000000",
-          uid: 1,
-          version: 2
-        }
-        const signature = ""
+      const provider = new ethers.BrowserProvider(ethereum);
+      const con = await contractInstance();
 
-        const mintData = {
-          mintComment: "Comment",
+      // Generate premint parameters dynamically
+      const privateKey = process.env.NEXT_PUBLIC_CREATOR_PRIVATE_KEY as string;
+      const { contractConfig, encodedConfig, signature } = await generatePremintParams(provider, privateKey);
+
+      // Prepare arguments for premint
+      const args = [
+        {
+          additionalAdmins: contractConfig.additionalAdmins,
+          contractAdmin: contractConfig.contractAdmin,
+          contractName: contractConfig.contractName,
+          contractURI: contractConfig.contractURI,
+        },
+        "0x0000000000000000000000000000000000000000",
+        {
+          deleted: encodedConfig.deleted,
+          uid: encodedConfig.uid,
+          version: encodedConfig.version,
+          premintConfigVersion: encodedConfig.premintConfigVersion,
+          tokenConfig: encodedConfig.tokenConfig,
+        },
+        signature,
+        BigInt(1),
+        {
+          mintComment: "blah",
           mintRecipient: "0xB351a70dD6E5282A8c84edCbCd5A955469b9b032",
           mintRewardsRecipients: [],
-        }
+        },
+        "0xB351a70dD6E5282A8c84edCbCd5A955469b9b032",
+        "0x0000000000000000000000000000000000000000",
+      ];
 
-        const tx = await con?.premint(contractConfig, "0x0000000000000000000000000000000000000000", premintConfig, signature, BigInt(1), mintData, "0xB351a70dD6E5282A8c84edCbCd5A955469b9b032", "0xB351a70dD6E5282A8c84edCbCd5A955469b9b032");
+      console.log("Premint arguments:", args);
 
-        console.log(tx);
-        await tx.wait();
-      }
+      // Call premint
+      const tx = await con?.premint(...args, {
+        value: ethers.parseUnits("0.000777", "ether"),
+      });
+
+      await tx.wait();
+      console.log("Transaction successful:", tx);
     } catch (e) {
-      console.log("Error in creating user account: ", e);
+      console.error("Error in creating user account:", e);
     }
   };
 
